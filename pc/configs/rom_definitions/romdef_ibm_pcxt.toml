@@ -1,0 +1,58 @@
+# romdef_ibm.toml
+# IBM PC/XT ROM definition file for MartyPC.
+
+# ----------------------------------------------------------------------------
+# System ROMS - IBM 5150 (PC)
+# ----------------------------------------------------------------------------
+[[romset]]
+alias = "ibm5150_81_v1"
+desc = "IBM 5150 BIOS Apr 24 1981"
+priority = 1
+provides = ["bios", "ibm5150v64k"]
+oem = true
+datestr = "1981/04/24"
+rom = [
+    { md5 = "6338a9808445de12109a2389b71ee2eb", addr = 0xFE000, size = 8192, chip = "u33" }
+]
+checkpoint = [
+    { addr = 0xfe01a, lvl = 2, desc = "RAM Check Routine" },
+    { addr = 0xfe05b, lvl = 2, desc = "8088 Processor Test" },
+    { addr = 0xfe0b0, lvl = 2, desc = "ROS Checksum" },
+    { addr = 0xfe0da, lvl = 2, desc = "8237 DMA Initialization Test" },
+    { addr = 0xfe117, lvl = 2, desc = "DMA Controller test"},
+    { addr = 0xfe158, lvl = 2, desc = "Base 16K Read/Write Test"},
+    { addr = 0xfe235, lvl = 2, desc = "8249 Interrupt Controller Test"},
+    { addr = 0xfe285, lvl = 2, desc = "8253 Timer Checkout"},
+    { addr = 0xfe33b, lvl = 2, desc = "ROS Checksum II"},
+    { addr = 0xfe352, lvl = 2, desc = "Initialize CRTC Controller"},
+    { addr = 0xfe3af, lvl = 2, desc = "Video Line Test"},
+    { addr = 0xfe3c0, lvl = 2, desc = "CRT Interface Lines Test"},
+    { addr = 0xfe3f8, lvl = 2, desc = "Additional R/W Storage Test"},
+    { addr = 0xfe630, lvl = 0, desc = "Error Beep"},
+    { addr = 0xfe666, lvl = 3, desc = "Beep"},
+    { addr = 0xfe688, lvl = 2, desc = "Keyboard Reset"},
+    { addr = 0xfe6b2, lvl = 3, desc = "Blink LED Interrupt"},
+    { addr = 0xfe6ca, lvl = 3, desc = "Print Message"},
+    { addr = 0xfe6f2, lvl = 2, desc = "Bootstrap Loader"},
+    { addr = 0xFEF33, lvl = 3, desc = "FDC Wait for Interrupt"},
+    { addr = 0xFEF47, lvl = 3, desc = "FDC Interrupt Timeout"},
+    { addr = 0xf6000, lvl = 2, desc = "ROM BASIC"},
+]
+
+# ----------------------------------------------------------------------------
+# BASIC ROMS - IBM 5150 & 5160
+# BASIC can be loaded seperately if you aren't using system ROMS that have it
+# built in.
+# ----------------------------------------------------------------------------
+[[romset]]
+alias = "ibmbasic_v1_8k"
+desc = "IBM Cassette Basic C1.0"
+priority = 1
+provides = ["ibm_basic"]
+oem = true
+rom = [
+    { md5 = "2ac2e97eddb3f344641cdd9dc3747f8e", addr = 0xF6000, size = 8192, chip = "u29" },
+    { md5 = "8b2a0f2ea97d0adb9c1c834387aad5d9", addr = 0xF8000, size = 8192, chip = "u30" },
+    { md5 = "9a3253ad9f1d8213d33e04476e3ed482", addr = 0xFA000, size = 8192, chip = "u31" },
+    { md5 = "2686dbc7f261f10d54553c4c5f93a3d5", addr = 0xFC000, size = 8192, chip = "u32"},
+]
